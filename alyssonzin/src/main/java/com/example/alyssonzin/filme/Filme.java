@@ -2,8 +2,6 @@ package com.example.alyssonzin.filme;
 
 import jakarta.persistence.*;
 
-import java.beans.ConstructorProperties;
-
 @Entity
 @Table(name = "filmes")
 public class Filme {

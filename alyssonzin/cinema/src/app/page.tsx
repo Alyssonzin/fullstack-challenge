@@ -1,5 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
+import MovieCard from "../components/MovieCard";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious
+} from "../components/ui/carousel";
 
 export default function Home() {
   return (
@@ -25,120 +33,25 @@ export default function Home() {
 
       <main>
         <h2>Em cartaz</h2>
-        <section className="flex flex-wrap gap-5 mt-6 mb-6 pr-16 pl-16">
-
-          <article className="border">
-            <div>
-              <Image
-                src="/matrix.webp"
-                alt="Matrix"
-                width={200}
-                height={200}
-                className="bg-cover"
-              />
-            </div>
-            <p>Matrix</p>
-            <p>2h.</p>
-            <button>Mais detalhes</button>
-          </article>
-
-          <article className="border">
-            <div>
-              <Image
-                src="/matrix.webp"
-                alt="Matrix"
-                width={200}
-                height={200}
-              />
-            </div>
-            <p>Matrix</p>
-            <p>2h.</p>
-            <button>Mais detalhes</button>
-          </article>
-
-          <article className="border">
-            <div>
-              <Image
-                src="/matrix.webp"
-                alt="Matrix"
-                width={200}
-                height={200}
-              />
-            </div>
-            <p>Matrix</p>
-            <p>2h.</p>
-            <button>Mais detalhes</button>
-          </article>
-
-          <article className="border">
-            <div>
-              <Image
-                src="/matrix.webp"
-                alt="Matrix"
-                width={200}
-                height={200}
-              />
-            </div>
-            <p>Matrix</p>
-            <p>2h.</p>
-            <button>Mais detalhes</button>
-          </article>
-
-          <article className="border">
-            <div>
-              <Image
-                src="/matrix.webp"
-                alt="Matrix"
-                width={200}
-                height={200}
-              />
-            </div>
-            <p>Matrix</p>
-            <p>2h.</p>
-            <button>Mais detalhes</button>
-          </article>
-
-          <article className="border">
-            <div>
-              <Image
-                src="/matrix.webp"
-                alt="Matrix"
-                width={200}
-                height={200}
-              />
-            </div>
-            <p>Matrix</p>
-            <p>2h.</p>
-            <button>Mais detalhes</button>
-          </article>
-
-          <article className="border">
-            <div>
-              <Image
-                src="/matrix.webp"
-                alt="Matrix"
-                width={200}
-                height={200}
-              />
-            </div>
-            <p>Matrix</p>
-            <p>2h.</p>
-            <button>Mais detalhes</button>
-          </article>
-
-          <article className="border">
-            <div>
-              <Image
-                src="/matrix.webp"
-                alt="Matrix"
-                width={200}
-                height={200}
-              />
-            </div>
-            <p>Matrix</p>
-            <p>2h.</p>
-            <button>Mais detalhes</button>
-          </article>
+        <section className="flex justify-center mt-6 mb-6">
+          <Carousel className="w-[80%]">
+            <CarouselContent className="-ml-10">
+              <CarouselItem className="pl-10 basis-1/6">
+                <MovieCard></MovieCard>
+              </CarouselItem>
+              <CarouselItem className="pl-10 basis-1/6">
+                <MovieCard></MovieCard>
+              </CarouselItem>
+              <CarouselItem className="pl-10 basis-1/6">
+                <MovieCard></MovieCard>
+              </CarouselItem>
+              <CarouselItem className="pl-10 basis-1/6">
+                <MovieCard></MovieCard>
+              </CarouselItem>
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
         </section>
       </main>
 

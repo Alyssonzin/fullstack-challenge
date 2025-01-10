@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import MovieCard from "../components/MovieCard";
@@ -8,8 +10,21 @@ import {
   CarouselNext,
   CarouselPrevious
 } from "../components/ui/carousel";
+import { useState, useEffect } from "react";
+import MovieType from "../types/MovieType";
+import { getNowPlaying } from "../api/movieRoutes";
 
 export default function Home() {
+  const [movies, setMovies] = useState<MovieType[]>();
+
+  useEffect(() => {
+    //Isso expõe minha api key no browser. Não é seguro.
+    getNowPlaying().then((movies) => {
+      setMovies(movies);
+    });
+    
+  }, []);
+
   return (
     <div>
       <header className="bg-zinc-600 flex justify-between p-4">
@@ -36,18 +51,18 @@ export default function Home() {
         <section className="flex justify-center mt-6 mb-6">
           <Carousel className="w-[80%]">
             <CarouselContent className="-ml-10">
-              <CarouselItem className="pl-10 basis-1/6">
-                <MovieCard></MovieCard>
+              {/* <CarouselItem className="pl-10 basis-1/6">
+                <MovieCard />
               </CarouselItem>
               <CarouselItem className="pl-10 basis-1/6">
-                <MovieCard></MovieCard>
+                <MovieCard />
               </CarouselItem>
               <CarouselItem className="pl-10 basis-1/6">
-                <MovieCard></MovieCard>
+                <MovieCard />
               </CarouselItem>
               <CarouselItem className="pl-10 basis-1/6">
-                <MovieCard></MovieCard>
-              </CarouselItem>
+                <MovieCard />
+              </CarouselItem> */}
             </CarouselContent>
             <CarouselPrevious />
             <CarouselNext />

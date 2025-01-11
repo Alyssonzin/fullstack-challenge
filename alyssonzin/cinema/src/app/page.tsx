@@ -22,7 +22,7 @@ export default function Home() {
     getNowPlaying().then((movies) => {
       setMovies(movies);
     });
-    
+
   }, []);
 
   return (
@@ -49,11 +49,8 @@ export default function Home() {
       <main>
         <h2>Em cartaz</h2>
         <section className="flex justify-center mt-6 mb-6">
-          <Carousel className="w-[80%]">
+          {/* <Carousel className="w-[80%]">
             <CarouselContent className="-ml-10">
-              {/* <CarouselItem className="pl-10 basis-1/6">
-                <MovieCard />
-              </CarouselItem>
               <CarouselItem className="pl-10 basis-1/6">
                 <MovieCard />
               </CarouselItem>
@@ -62,11 +59,14 @@ export default function Home() {
               </CarouselItem>
               <CarouselItem className="pl-10 basis-1/6">
                 <MovieCard />
-              </CarouselItem> */}
+              </CarouselItem>
+              <CarouselItem className="pl-10 basis-1/6">
+                <MovieCard />
+              </CarouselItem>
             </CarouselContent>
             <CarouselPrevious />
             <CarouselNext />
-          </Carousel>
+          </Carousel> */}
         </section>
       </main>
 

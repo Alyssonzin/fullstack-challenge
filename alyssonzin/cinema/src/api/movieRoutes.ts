@@ -1,14 +1,13 @@
+import TMDBresponse from "../types/TMDBresponse";
 import { apiTMDB } from "./api";
 
 //Retorna filmes em cartaz
 export const getNowPlaying = async () => {
-    return apiTMDB.get('/now_playing', {
+    return apiTMDB.get<TMDBresponse>('/now_playing', {
         params: {
             language: 'pt-BR',
         }
     }).then(res => {
-        return res
-    }).catch(error => {
-        throw error;
+        return res.data.results;
     });
 }

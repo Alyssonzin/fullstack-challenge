@@ -49,24 +49,19 @@ export default function Home() {
       <main>
         <h2>Em cartaz</h2>
         <section className="flex justify-center mt-6 mb-6">
-          {/* <Carousel className="w-[80%]">
+          <Carousel className="w-[80%]">
             <CarouselContent className="-ml-10">
-              <CarouselItem className="pl-10 basis-1/6">
-                <MovieCard />
-              </CarouselItem>
-              <CarouselItem className="pl-10 basis-1/6">
-                <MovieCard />
-              </CarouselItem>
-              <CarouselItem className="pl-10 basis-1/6">
-                <MovieCard />
-              </CarouselItem>
-              <CarouselItem className="pl-10 basis-1/6">
-                <MovieCard />
-              </CarouselItem>
+              {
+                movies?.map((movie) => (
+                  <CarouselItem key={movie.id} className="pl-10 basis-1/6">
+                    <MovieCard movieProps={movie}/>
+                  </CarouselItem>
+                ))
+              }
             </CarouselContent>
             <CarouselPrevious />
             <CarouselNext />
-          </Carousel> */}
+          </Carousel>
         </section>
       </main>
 

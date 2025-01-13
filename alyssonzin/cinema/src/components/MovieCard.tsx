@@ -1,12 +1,12 @@
 import Image from "next/image";
-import MovieType from "../types/MovieType";
+import MovieCardProps from "../types/MovieCardProps";
 
-export default function MovieCard(movie: MovieType) {
+export default function MovieCard({ movieProps: movie }: MovieCardProps) {
     return (
         <article className="border">
             <div>
                 <Image
-                    src="/matrix.webp"
+                    src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                     alt={movie.title}
                     width={500}
                     height={500}

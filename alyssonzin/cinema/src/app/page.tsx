@@ -27,7 +27,7 @@ export default function Home() {
 
   return (
     <div>
-      <header className="bg-zinc-600 flex justify-between p-4">
+      <header className="text-white bg-zinc-600 flex justify-between p-4">
         <Link href="/" className="contents">
           <Image
             src="/cinema-logo.png"
@@ -46,22 +46,24 @@ export default function Home() {
         </nav>
       </header>
 
-      <main>
-        <h2>Em cartaz</h2>
-        <section className="flex justify-center mt-6 mb-6">
-          <Carousel className="w-[80%]">
-            <CarouselContent className="-ml-10">
-              {
-                movies?.map((movie) => (
-                  <CarouselItem key={movie.id} className="pl-10 basis-1/6">
-                    <MovieCard movieProps={movie}/>
-                  </CarouselItem>
-                ))
-              }
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel>
+      <main className="bg-slate-900 min-h-screen">
+        <section className="mb-6 p-10">
+          <h2 className="text-white select-none font-semibold border-b text-xl w-fit ml-[5%] mb-5">Em Cartaz</h2>
+          <div className="flex justify-center">
+            <Carousel className="w-[90%]">
+              <CarouselContent>
+                {
+                  movies?.map((movie) => (
+                    <CarouselItem key={movie.id} className="basis-1/5">
+                      <MovieCard movieProps={movie} />
+                    </CarouselItem>
+                  ))
+                }
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
+          </div>
         </section>
       </main>
 

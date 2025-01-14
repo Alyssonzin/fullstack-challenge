@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import MovieCard from "../components/MovieCard";
+import MovieCard from "../components/MovieCard/MovieCard";
 import {
   Carousel,
   CarouselContent,

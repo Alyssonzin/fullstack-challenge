@@ -12,3 +12,13 @@ export const getNowPlaying = async () => {
         return res.data.results;
     });
 }
+
+const getMovieDetails = async (id: number) => {
+    return apiTMDB.get<TMDBresponse>(`/${id}`, {
+        params: {
+            language: 'pt-BR',
+        }
+    }).then(res => {
+        return res.data;
+    })
+}

@@ -1,9 +1,10 @@
-import TMDBresponse from "../types/TMDBresponse";
+import MovieType from "../types/MovieType";
+import TMDBlistMovies from "../types/TMDBresponse";
 import { apiTMDB } from "./api";
 
 //Retorna filmes em cartaz
 export const getNowPlaying = async () => {
-    return apiTMDB.get<TMDBresponse>('/now_playing', {
+    return apiTMDB.get<TMDBlistMovies>('/now_playing', {
         params: {
             language: 'pt-BR',
             region: 'BR',
@@ -13,8 +14,8 @@ export const getNowPlaying = async () => {
     });
 }
 
-const getMovieDetails = async (id: number) => {
-    return apiTMDB.get<TMDBresponse>(`/${id}`, {
+export const getMovieDetails = async (id: string) => {
+    return apiTMDB.get<MovieType>(`/${id}`, {
         params: {
             language: 'pt-BR',
         }

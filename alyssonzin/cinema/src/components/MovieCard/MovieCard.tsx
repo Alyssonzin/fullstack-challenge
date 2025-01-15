@@ -20,7 +20,7 @@ export default function MovieCard({ movieProps: movie }: MovieCardProps) {
     return (
         <article className="select-none bg-slate-300 shadow-md border border-gray-400 hover:bg-slate-400 transition rounded p-2">
             <div className="mb-2">
-                <Link href={`/movie/${movie.id}`}>
+                <Link href={`/${movie.id}`}>
                     <MoviePoster
                         poster_path={movie.poster_path}
                         title={movie.title}

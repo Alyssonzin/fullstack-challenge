@@ -1,7 +1,4 @@
 "use client";
-
-import Image from "next/image";
-import Link from "next/link";
 import MovieCard from "../components/MovieCard/MovieCard";
 import {
   Carousel,
@@ -27,7 +24,7 @@ export default function Home() {
 
   return (
     <div>
-      <main className="bg-slate-900 min-h-screen">
+      <main className="min-h-screen">
         <section className="mb-6 p-10">
           <h2 className="text-white select-none font-semibold border-b text-xl w-fit ml-[5%] mb-5">Em Cartaz</h2>
           <div className="flex justify-center">

@@ -12,6 +12,7 @@ export default function MoviePoster({ poster_path, title }: MoviePosterProps) {
             alt={title}
             width={500}
             height={500}
+            layout="intrinsic"
         />
     )
 }

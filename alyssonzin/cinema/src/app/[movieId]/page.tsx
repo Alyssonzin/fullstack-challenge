@@ -14,8 +14,7 @@ export default async function MoviePage({ params }: Props) {
 
     return (
         <main>
-            <h1>{movie.title}</h1>
-            <p>{movie.overview}</p>
+            
         </main>
     );
 }

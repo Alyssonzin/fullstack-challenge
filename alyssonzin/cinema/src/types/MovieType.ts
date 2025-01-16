@@ -1,6 +1,4 @@
-import Genre from "./Genre";
 import ProductionCompany from "./ProductionCompany";
-
 
 export default interface MovieType {
     id: string,
@@ -8,9 +6,17 @@ export default interface MovieType {
     original_title: string,
     overview: string,
     poster_path: string,
-    release_date: string,
     vote_average: number,
-    production_companies?: ProductionCompany[],
-    genres?: Genre[],
-    runtime?: number,
 };
+
+export interface MovieDetails extends MovieType {
+    production_companies: ProductionCompany[],
+    genres: Genre[],
+    runtime: number,
+    certification: string,
+}
+
+export interface Genre {
+    id: number,
+    name: string,
+}

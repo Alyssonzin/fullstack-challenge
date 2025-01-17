@@ -13,7 +13,6 @@ export interface MovieDetails extends MovieType {
     production_companies: ProductionCompany[],
     genres: Genre[],
     runtime: number,
-    certification: string,
 }
 
 export interface Genre {

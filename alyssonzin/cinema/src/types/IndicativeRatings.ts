@@ -1,32 +1,7 @@
-export const IndicativeRatings = [
-    {
-        minimumAge: 0,
-        simbol: 'L',
-        color: 'green',
-    },
-    {
-        minimumAge: 10,
-        simbol: '10',
-        color: 'blue',
-    },
-    {
-        minimumAge: 12,
-        simbol: '12',
-        color: 'yellow',
-    },
-    {
-        minimumAge: 14,
-        simbol: '14',
-        color: 'orange',
-    },
-    {
-        minimumAge: 16,
-        simbol: '16',
-        color: 'red',
-    },
-    {
-        minimumAge: 18,
-        simbol: '18',
-        color: 'black',
-    }
-]
+export const IndicativeRatingsHashMap = new Map([
+    ['10', { minimumAge: 10, color: 'bg-blue-500' }],
+    ['12', { minimumAge: 12, color: 'bg-yellow-500' }],
+    ['14', { minimumAge: 14, color: 'bg-orange-500' }],
+    ['16', { minimumAge: 16, color: 'bg-red-500' }],
+    ['18', { minimumAge: 18, color: 'bg-black' }],
+]);

@@ -21,7 +21,7 @@ export default async function MoviePage({ params }: Props) {
     const indicativeRating = await fetchIndicativeRating(movieId);
 
     return (
-        <main>
+        <main className="min-h-screen">
             <div className="flex bg-slate-950 p-10">
                 <div className="w-1/6 mr-5">
                     <MoviePoster
@@ -47,7 +47,6 @@ export default async function MoviePage({ params }: Props) {
                     <p>{movie.overview}</p>
                 </div>
             </div>
-
         </main>
     );
 }

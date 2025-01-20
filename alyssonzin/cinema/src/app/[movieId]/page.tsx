@@ -2,8 +2,8 @@ import { getIndicativeRating, getMovieDetails } from "../../api/movieRoutes";
 import Genres from "../../components/MoviePage/Genres";
 import IndicativeRating from "../../components/MoviePage/IndicativeRating";
 import MoviePoster from "../../components/MoviePoster";
-import CompanyLogo from "../../components/CompanyLogo";
 import ProductionCompanies from "../../components/MoviePage/ProductionCompanies";
+import Link from "next/link";
 
 interface Props {
     params: Promise<{ movieId: string }>,
@@ -51,6 +51,25 @@ export default async function MoviePage({ params }: Props) {
                     <ProductionCompanies companies={movie.production_companies} />
                 </div>
             </div>
+
+            <section className="bg-slate-800 w-1/2 rounded p-7">
+                <div className="w-fit mb-5">
+                    <h2 className="text-xl font-semibold">Sessões</h2>
+                    <hr />
+                </div>
+
+                <div className="flex bg-slate-950 rounded p-5">
+                    <article>
+                        <div className="text-center w-1/6">
+                            <Link
+                                href={`/sessions/${movieId}`}
+                            >
+                                <p>Hoje <br />20/01</p>
+                            </Link>
+                        </div>
+                    </article>
+                </div>
+            </section>
         </main>
     );
 }

@@ -2,6 +2,8 @@ import { getIndicativeRating, getMovieDetails } from "../../api/movieRoutes";
 import Genres from "../../components/MoviePage/Genres";
 import IndicativeRating from "../../components/MoviePage/IndicativeRating";
 import MoviePoster from "../../components/MoviePoster";
+import CompanyLogo from "../../components/CompanyLogo";
+import ProductionCompanies from "../../components/MoviePage/ProductionCompanies";
 
 interface Props {
     params: Promise<{ movieId: string }>,
@@ -21,7 +23,7 @@ export default async function MoviePage({ params }: Props) {
     const indicativeRating = await fetchIndicativeRating(movieId);
 
     return (
-        <main className="min-h-screen">
+        <main className="min-h-screen text-white">
             <div className="flex bg-slate-950 p-10">
                 <div className="w-1/6 mr-5">
                     <MoviePoster
@@ -29,8 +31,7 @@ export default async function MoviePage({ params }: Props) {
                         poster_path={movie.poster_path}
                     />
                 </div>
-
-                <div className="w-1/2 text-white">
+                <div className="w-1/2">
                     <div className="mb-5">
                         <h2 className="text-2xl font-bold mb-3">{movie.title}</h2>
                         <hr className="mb-5" />
@@ -43,8 +44,11 @@ export default async function MoviePage({ params }: Props) {
                             <Genres genres={movie.genres!} />
                         </div>
                     </div>
-
                     <p>{movie.overview}</p>
+                </div>
+
+                <div className="ml-auto mr-auto">
+                    <ProductionCompanies companies={movie.production_companies} />
                 </div>
             </div>
         </main>

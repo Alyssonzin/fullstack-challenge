@@ -10,14 +10,17 @@ import {
 import { useState, useEffect } from "react";
 import MovieType from "../types/MovieType";
 import { getNowPlaying } from "../api/movieRoutes";
+import Loading from "../components/Loading";
 
 export default function Home() {
   const [movies, setMovies] = useState<MovieType[]>();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     //Isso expõe minha api key no browser. Não é seguro.
     getNowPlaying().then((movies) => {
       setMovies(movies);
+      setIsLoading(false);
     });
 
   }, []);
@@ -28,19 +31,22 @@ export default function Home() {
         <section className="mb-6 p-10">
           <h2 className="text-white select-none font-semibold border-b text-xl w-fit ml-[5%] mb-5">Em Cartaz</h2>
           <div className="flex justify-center">
-            <Carousel className="w-[90%]">
-              <CarouselContent>
-                {
-                  movies?.map((movie) => (
-                    <CarouselItem key={movie.id} className="basis-1/5">
-                      <MovieCard movieProps={movie} />
-                    </CarouselItem>
-                  ))
-                }
-              </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
-            </Carousel>
+            {
+              isLoading ? <Loading /> :
+                <Carousel className="w-[90%]">
+                  <CarouselContent>
+                    {
+                      movies?.map((movie) => (
+                        <CarouselItem key={movie.id} className="basis-1/5">
+                          <MovieCard movieProps={movie} />
+                        </CarouselItem>
+                      ))
+                    }
+                  </CarouselContent>
+                  <CarouselPrevious />
+                  <CarouselNext />
+                </Carousel>
+            }
           </div>
         </section>
       </main>

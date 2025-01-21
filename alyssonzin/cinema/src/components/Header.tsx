@@ -18,6 +18,9 @@ export default function Header() {
             <li>
               <Link href="/login">Login</Link>
             </li>
+            <li>
+              <Link href="/register">Cadastrar-se</Link>
+            </li>
           </ul>
         </nav>
       </header>

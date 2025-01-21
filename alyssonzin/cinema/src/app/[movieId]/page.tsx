@@ -63,7 +63,7 @@ export default async function MoviePage({ params }: Props) {
                         <Link
                             href={`/sessions/${movieId}`}
                         >
-                            <div className="text-center hover:bg-cyan-900 rounded p-5">
+                            <div className="text-center hover:bg-cyan-900 transition rounded p-5">
                                 <p>Hoje</p>
                                 <p>
                                     {

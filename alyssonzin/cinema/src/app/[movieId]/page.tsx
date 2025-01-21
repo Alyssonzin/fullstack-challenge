@@ -58,15 +58,23 @@ export default async function MoviePage({ params }: Props) {
                     <hr />
                 </div>
 
-                <div className="flex bg-slate-950 rounded p-5">
+                <div className="flex space-x-3 bg-slate-950 rounded p-2">
                     <article>
-                        <div className="text-center w-1/6">
-                            <Link
-                                href={`/sessions/${movieId}`}
-                            >
-                                <p>Hoje <br />20/01</p>
-                            </Link>
-                        </div>
+                        <Link
+                            href={`/sessions/${movieId}`}
+                        >
+                            <div className="text-center hover:bg-cyan-900 rounded p-5">
+                                <p>Hoje</p>
+                                <p>
+                                    {
+                                        new Date().toLocaleDateString('br', {
+                                            day: 'numeric',
+                                            month: 'numeric',
+                                        })
+                                    }
+                                </p>
+                            </div>
+                        </Link>
                     </article>
                 </div>
             </section>

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Header() {
     return (
-        <header className="text-white bg-zinc-600 flex justify-between p-4">
+        <header className="text-white bg-cyan-950 flex justify-between p-4">
         <Link href="/" className="contents">
           <Image
             src="/cinema-logo.png"

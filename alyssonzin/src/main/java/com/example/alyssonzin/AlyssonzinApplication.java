@@ -8,6 +8,7 @@ public class AlyssonzinApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AlyssonzinApplication.class, args);
+		System.out.println("Application is running on localhost:8080");
 	}
 
 }

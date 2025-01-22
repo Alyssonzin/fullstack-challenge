@@ -20,7 +20,7 @@ public class UserController {
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody UserPayload payload) {
         User newUser = new User(payload);
-        this.userService.createUser(newUser);
+        userService.createUser(newUser);
         return ResponseEntity.ok(newUser);
     }
 

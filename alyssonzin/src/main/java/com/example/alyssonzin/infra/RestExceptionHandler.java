@@ -13,10 +13,9 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(DuplicateCpfException.class)
     private ResponseEntity<RestErrorResponse> duplicateCpfHandler(DuplicateCpfException exception) {
-        RestErrorResponse responseError = new RestErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR,
-                exception.getMessage());
+        RestErrorResponse responseError = new RestErrorResponse(HttpStatus.CONFLICT, exception.getMessage());
 
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseError);
+        return ResponseEntity.status(responseError.getStatus()).body(responseError);
     }
 
 }

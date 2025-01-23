@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.alyssonzin.infra.exceptions.DuplicateCpfException;
+
 @Service
 public class UserService {
 
@@ -17,14 +19,18 @@ public class UserService {
     }
 
     public List<User> getAllUsers() {
-        return this.repository.findAll();
+        return repository.findAll();
     }
 
     public Optional<User> getUserById(Long id) {
-        return this.repository.findById(id);
+        return repository.findById(id);
     }
 
     public User createUser(User user) {
-        return this.repository.save(user);
+        //Verifica primeiro se o CPF ja existe
+        if (repository.existsByCpf(user.getCpf())) {
+            throw new DuplicateCpfException("This CPF already exists");
+        }
+        return repository.save(user);
     }
 }

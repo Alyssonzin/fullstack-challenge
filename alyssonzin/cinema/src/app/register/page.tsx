@@ -1,6 +1,8 @@
 'use client';
 import { SubmitHandler, useForm } from "react-hook-form";
 import Input from "../../components/formComponents/Input";
+import Button from "../../components/formComponents/Button";
+import InputErrorMessage from "../../components/formComponents/InputErrorMessage";
 
 interface FormData {
     name: string;
@@ -23,7 +25,7 @@ export default function Register() {
     return (
         <main className="min-h-screen">
             <div className="flex flex-col items-center justify-center text-white">
-                <div className="w-1/4">
+                <div className="w-1/3 bg-gray-800 rounded p-8 mt-10">
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="flex space-y-5 flex-col">
                             <div className="w-full">
@@ -33,8 +35,9 @@ export default function Register() {
                                     placeholder="Nome completo"
                                     label="Nome"
                                     {...register('name', { required: true })}
+                                    isError={!!formState.errors.name}
                                 />
-                                {formState.errors.name && <p className="text-red-500">Nome é obrigatório</p>}
+                                {formState.errors.name && <InputErrorMessage text="Nome é obrigatório" />}
                             </div>
 
                             <div className="w-full">
@@ -44,8 +47,9 @@ export default function Register() {
                                     placeholder="Seu CPF"
                                     label="CPF"
                                     {...register('cpf', { required: true })}
+                                    isError={!!formState.errors.cpf}
                                 />
-                                {formState.errors.cpf && <p className="text-red-500">CPF é obrigatório</p>}
+                                {formState.errors.cpf && <InputErrorMessage text="CPF é obrigatório" />}
                             </div>
 
                             <div className="flex space-x-3">
@@ -56,8 +60,9 @@ export default function Register() {
                                         placeholder="DDD"
                                         label="DDD"
                                         {...register('phone.ddd', { required: true })}
+                                        isError={!!formState.errors.phone?.ddd}
                                     />
-                                    {formState.errors.phone?.ddd && <p className="text-red-500">DDD é obrigatório</p>}
+                                    {formState.errors.phone?.ddd && <InputErrorMessage text="DDD é obrigatório" />}
                                 </div>
 
                                 <div className="w-full">
@@ -67,9 +72,9 @@ export default function Register() {
                                         placeholder="Número de telefone"
                                         label="Telefone"
                                         {...register('phone.number', { required: true })}
-                                        isError={formState.errors.phone?.number}
+                                        isError={!!formState.errors.phone?.number}
                                     />
-                                    {formState.errors.phone?.number && <p className="text-red-500">Telefone é obrigatório</p>}
+                                    {formState.errors.phone?.number && <InputErrorMessage text="Telefone é obrigatório" />}
                                 </div>
                             </div>
 
@@ -80,8 +85,9 @@ export default function Register() {
                                     placeholder="Seu e-mail"
                                     label="E-mail"
                                     {...register('email', { required: true })}
+                                    isError={!!formState.errors.email}
                                 />
-                                {formState.errors.email && <p className="text-red-500">E-mail é obrigatório</p>}
+                                {formState.errors.email && <InputErrorMessage text="E-mail é obrigatório" />}
                             </div>
 
                             <div className="w-full">
@@ -91,8 +97,9 @@ export default function Register() {
                                     placeholder="Crie uma senha"
                                     label="Senha"
                                     {...register('password', { required: true })}
+                                    isError={!!formState.errors.password}
                                 />
-                                {formState.errors.password && <p className="text-red-500">Senha é obrigatório</p>}
+                                {formState.errors.password && <InputErrorMessage text="Senha é obrigatório" />}
                             </div>
 
                             <div className="w-full">
@@ -101,15 +108,16 @@ export default function Register() {
                                     autoComplete="off"
                                     placeholder="Digite a senha novamente"
                                     {...register('confirmPassword', { required: true })}
+                                    isError={!!formState.errors.confirmPassword}
                                 />
-                                {formState.errors.confirmPassword && <p className="text-red-500">confirmPassword é obrigatório</p>}
-                            </div>
+                                {formState.errors.confirmPassword && <InputErrorMessage text="Nome é obrigatório" />}
+                            </div >
 
-                            <button className="bg-blue-500 text-white rounded p-1" type="submit">Cadastrar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </main>
+                            <Button type="submit">Cadastrar</Button>
+                        </div >
+                    </form >
+                </div >
+            </div >
+        </main >
     )
 }

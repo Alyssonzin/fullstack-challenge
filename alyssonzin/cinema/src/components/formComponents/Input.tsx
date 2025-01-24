@@ -1,20 +1,18 @@
 import { InputHTMLAttributes } from "react";
 
-
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-    name: string,
     type: string,
     placeholder?: string,
     label?: string,
     isError?: boolean,
 }
 
-export default function Input({ type, label, placeholder, ...rest }: InputProps) {
+export default function Input({ type, label, placeholder, isError,...rest }: InputProps) {
     return (
         <div>
             {label && <label>{label}</label>}
             <input
-                className={`w-full text-black mt-1 p-2 outline-cyan-700 rounded ${rest.isError ? 'border-red-500' : null}`}
+                className={`w-full text-black mt-1 mb-1 p-2 rounded outline-none ${isError? 'outline-red-500': 'outline-cyan-600'}`}
                 placeholder={placeholder}
                 type={type}
                 {...rest}

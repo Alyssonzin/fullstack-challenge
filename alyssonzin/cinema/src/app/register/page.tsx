@@ -3,6 +3,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import Input from "../../components/formComponents/Input";
 import Button from "../../components/formComponents/Button";
 import InputErrorMessage from "../../components/formComponents/InputErrorMessage";
+import { cpfMask, dddPhoneMask, phoneNumberMask } from "../../lib/Masks";
 
 interface FormData {
     name: string;
@@ -17,7 +18,7 @@ interface FormData {
 }
 
 const onSubmit: SubmitHandler<FormData> = (data) => {
-    console.log(data);
+    console.log(cpfMask(data.cpf));
 }
 
 export default function Register() {
@@ -48,6 +49,7 @@ export default function Register() {
                                     label="CPF"
                                     {...register('cpf', { required: true })}
                                     isError={!!formState.errors.cpf}
+                                    onChange={(e) => { e.target.value = cpfMask(e.target.value) }}
                                 />
                                 {formState.errors.cpf && <InputErrorMessage text="CPF é obrigatório" />}
                             </div>
@@ -61,6 +63,7 @@ export default function Register() {
                                         label="DDD"
                                         {...register('phone.ddd', { required: true })}
                                         isError={!!formState.errors.phone?.ddd}
+                                        onChange={(e) => { e.target.value = dddPhoneMask(e.target.value) }}
                                     />
                                     {formState.errors.phone?.ddd && <InputErrorMessage text="DDD é obrigatório" />}
                                 </div>
@@ -73,6 +76,7 @@ export default function Register() {
                                         label="Telefone"
                                         {...register('phone.number', { required: true })}
                                         isError={!!formState.errors.phone?.number}
+                                        onChange={(e) => { e.target.value = phoneNumberMask(e.target.value) }}
                                     />
                                     {formState.errors.phone?.number && <InputErrorMessage text="Telefone é obrigatório" />}
                                 </div>

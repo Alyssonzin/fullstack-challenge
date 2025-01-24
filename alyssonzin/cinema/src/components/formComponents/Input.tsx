@@ -7,7 +7,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     isError?: boolean,
 }
 
-export default function Input({ type, label, placeholder, isError,...rest }: InputProps) {
+export default function Input({ type, label, placeholder, isError, ...rest }: InputProps) {
     return (
         <div>
             {label && <label>{label}</label>}

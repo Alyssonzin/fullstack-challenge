@@ -4,25 +4,15 @@ import Input from "../../components/formComponents/Input";
 import Button from "../../components/formComponents/Button";
 import InputErrorMessage from "../../components/formComponents/InputErrorMessage";
 import { cpfMask, dddPhoneMask, phoneNumberMask } from "../../lib/Masks";
+import UserForm from "../../types/forms/UserForm";
+import { createUser } from "../../api/userRoutes";
 
-interface FormData {
-    name: string;
-    cpf: string;
-    email: string;
-    password: string;
-    confirmPassword: string;
-    phone: {
-        ddd: string;
-        number: string;
-    }
-}
-
-const onSubmit: SubmitHandler<FormData> = (data) => {
-    console.log(cpfMask(data.cpf));
+const onSubmit: SubmitHandler<UserForm> = (data) => {
+    createUser(data);
 }
 
 export default function Register() {
-    const { register, handleSubmit, formState } = useForm<FormData>();
+    const { register, handleSubmit, formState } = useForm<UserForm>();
     return (
         <main className="min-h-screen">
             <div className="flex flex-col items-center justify-center text-white">

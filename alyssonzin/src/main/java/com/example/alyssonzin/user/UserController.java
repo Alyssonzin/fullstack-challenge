@@ -18,8 +18,8 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody UserPayload payload) {
-        User newUser = new User(payload);
+    public ResponseEntity<User> createUser(@RequestBody UserPayload userBody) {
+        User newUser = new User(userBody);
         userService.createUser(newUser);
         return ResponseEntity.ok(newUser);
     }

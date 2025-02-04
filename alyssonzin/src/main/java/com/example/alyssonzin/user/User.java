@@ -15,31 +15,57 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nome", nullable = false)
-    private String nome;
+    @Column(name = "name", nullable = false)
+    private String name;
 
     @Column(name = "cpf", nullable = false, unique = true)
     private String cpf;
 
+    @Column(name = "email", nullable = false, unique = true)
+    private String email;
+
+    @Column(name = "password", nullable = false)
+    private String password;
+
+    // Construtores
     public User() {
 
     }
 
     public User(UserPayload data) {
-        this.nome = data.nome();
+        this.name = data.name();
         this.cpf = data.cpf();
+        this.email = data.email();
+        this.password = data.password();
     }
 
-    public String getNome() {
-        return nome;
+    // Getters e Setters
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getCpf() {
         return cpf;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String nome) {
+        this.name = nome;
     }
 
     public void setCpf(String cpf) {

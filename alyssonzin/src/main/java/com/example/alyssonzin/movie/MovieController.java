@@ -11,20 +11,19 @@ import java.util.List;
 public class MovieController {
 
     @Autowired
-    MovieRepository movieRepository;
+    MovieService movieService;
 
     @PostMapping
     public ResponseEntity<Movie> createMovie(@RequestBody MovieDto movieBody) {
         Movie newMovie = new Movie(movieBody);
-
-        movieRepository.save(newMovie);
+        movieService.create(newMovie);
 
         return ResponseEntity.ok(newMovie);
     }
 
     @GetMapping
-    public ResponseEntity<List<Movie>> getAllMovies(){
-        List<Movie> movieList = movieRepository.findAll();
+    public ResponseEntity<List<Movie>> getAllMovies() {
+        List<Movie> movieList = movieService.getAllMovies();
 
         return ResponseEntity.ok(movieList);
     }

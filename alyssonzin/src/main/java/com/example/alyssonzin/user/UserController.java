@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.alyssonzin.user.dto.UserRequestDto;
+import com.example.alyssonzin.user.dto.UserResponseDto;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -18,15 +21,21 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody UserPayload userBody) {
+    public ResponseEntity<UserResponseDto> createUser(@RequestBody UserRequestDto userBody) {
         User newUser = new User(userBody);
         userService.createUser(newUser);
-        return ResponseEntity.ok(newUser);
+        return ResponseEntity.ok(new UserResponseDto(newUser.getName(), newUser.getCpf(), newUser.getEmail()));
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> getAllUsers() {
-        List<User> usersList = this.userService.getAllUsers();
-        return ResponseEntity.ok(usersList);
+    public ResponseEntity<List<UserResponseDto>> getAllUsers() {
+        List<User> usersList = userService.getAllUsers();
+
+        // Transforma a lista de User em uma lista de UserResponseDto, sem a password
+        // dos usuarios
+        List<UserResponseDto> response = usersList.stream()
+                .map(user -> new UserResponseDto(user.getName(), user.getCpf(), user.getEmail())).toList();
+
+        return ResponseEntity.ok(response);
     }
 }

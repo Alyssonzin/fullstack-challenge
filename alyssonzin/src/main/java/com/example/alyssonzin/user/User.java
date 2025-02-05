@@ -1,5 +1,7 @@
 package com.example.alyssonzin.user;
 
+import com.example.alyssonzin.user.dto.UserRequestDto;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,7 +34,7 @@ public class User {
 
     }
 
-    public User(UserPayload data) {
+    public User(UserRequestDto data) {
         this.name = data.name();
         this.cpf = data.cpf();
         this.email = data.email();

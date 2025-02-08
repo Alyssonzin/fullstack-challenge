@@ -1,4 +1,4 @@
 package com.example.alyssonzin.movie;
 
-public record MovieDto(String name) {
+public record MovieDto(String name, Integer runtime) {
 }

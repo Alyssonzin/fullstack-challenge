@@ -13,12 +13,16 @@ public class Movie {
     @Column(name = "name", nullable = false)
     private String name;
 
-    public Movie(){
+    @Column(name = "runtime")
+    private Integer runtime;
+
+    public Movie() {
 
     }
 
     public Movie(MovieDto data) {
         this.name = data.name();
+        this.runtime = data.runtime();
     }
 
     public Long getId() {
@@ -29,7 +33,15 @@ public class Movie {
         this.name = name;
     }
 
-    public String getname() {
+    public String getName() {
         return name;
+    }
+
+    public void setRuntime(Integer runtime) {
+        this.runtime = runtime;
+    }
+
+    public Integer getRuntime() {
+        return runtime;
     }
 }

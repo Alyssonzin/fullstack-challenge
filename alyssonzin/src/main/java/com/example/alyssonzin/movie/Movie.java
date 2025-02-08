@@ -16,6 +16,9 @@ public class Movie {
     @Column(name = "runtime")
     private Integer runtime;
 
+    @Column(name = "tmdb_id")
+    private Integer tmdbId;
+
     public Movie() {
 
     }
@@ -23,6 +26,7 @@ public class Movie {
     public Movie(MovieDto data) {
         this.name = data.name();
         this.runtime = data.runtime();
+        this.tmdbId = data.tmdbId();
     }
 
     public Long getId() {
@@ -43,5 +47,13 @@ public class Movie {
 
     public Integer getRuntime() {
         return runtime;
+    }
+
+    public void setTmdbId(Integer tmdbId) {
+        this.tmdbId = tmdbId;
+    }
+
+    public Integer getTmdbId() {
+        return tmdbId;
     }
 }

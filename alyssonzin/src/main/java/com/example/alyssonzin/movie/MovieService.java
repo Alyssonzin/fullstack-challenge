@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.alyssonzin.infra.exceptions.NotFoundMovieException;
+
 @Service
 public class MovieService {
 
@@ -28,7 +30,7 @@ public class MovieService {
     }
 
     public Movie findById(Long id) {
-        return movieRepository.findById(id).orElseThrow(() -> new RuntimeException("Movie not found"));
+        return movieRepository.findById(id).orElseThrow(() -> new NotFoundMovieException("Movie not found"));
     }
 
     public List<Movie> getAllMovies() {

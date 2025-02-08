@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.example.alyssonzin.infra.exceptions.DuplicateCpfException;
+import com.example.alyssonzin.infra.exceptions.NotFoundMovieException;
 
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
@@ -18,4 +19,10 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(responseError.getStatus()).body(responseError);
     }
 
+    @ExceptionHandler(NotFoundMovieException.class)
+    private ResponseEntity<RestErrorResponse> notFoundMovieHandler(NotFoundMovieException exception) {
+        RestErrorResponse responseError = new RestErrorResponse(HttpStatus.NOT_FOUND, exception.getMessage());
+
+        return ResponseEntity.status(responseError.getStatus()).body(responseError);
+    }
 }

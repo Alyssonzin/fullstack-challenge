@@ -27,4 +27,11 @@ public class MovieController {
 
         return ResponseEntity.ok(movieList);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Movie> getMovieById(@PathVariable Long id) {
+        Movie movie = movieService.findById(id);
+
+        return ResponseEntity.ok(movie);
+    }
 }

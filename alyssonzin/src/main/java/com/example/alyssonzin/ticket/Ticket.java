@@ -2,6 +2,7 @@ package com.example.alyssonzin.ticket;
 
 import com.example.alyssonzin.movie.Movie;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,6 +19,9 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "price", nullable = false, precision = 2)
+    private Double price;
+
     // Um movie pode ter vários tickets, mas um ticket só pode pertencer a um movie
     @ManyToOne
     @JoinColumn(name = "movie_id", referencedColumnName = "id")
@@ -27,8 +31,8 @@ public class Ticket {
 
     }
 
-    public Ticket(TicketDto data) {
-        this.movie = data.movie();
+    public Ticket(TicketRequestDto data) {
+        this.price = data.price();
     }
 
     public Long getId() {
@@ -37,5 +41,17 @@ public class Ticket {
 
     public Movie getMovie() {
         return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 }

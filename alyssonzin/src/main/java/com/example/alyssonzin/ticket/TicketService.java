@@ -19,7 +19,7 @@ public class TicketService {
         return ticketRepository.save(ticket);
     }
 
-    public List<Ticket> getAllTickets() {
+    public List<Ticket> findAll() {
         return ticketRepository.findAll();
     }
 

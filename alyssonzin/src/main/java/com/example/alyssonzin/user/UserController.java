@@ -32,7 +32,7 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<List<UserResponseDto>> getAllUsers() {
-        List<User> usersList = userService.getAllUsers();
+        List<User> usersList = userService.findAll();
 
         // Transforma a lista de User em uma lista de UserResponseDto, sem a password
         // dos usuarios

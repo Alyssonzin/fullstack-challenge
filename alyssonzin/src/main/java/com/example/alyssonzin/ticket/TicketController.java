@@ -39,7 +39,7 @@ public class TicketController {
 
     @GetMapping
     public ResponseEntity<List<Ticket>> getAllTickets() {
-        List<Ticket> ticketList = ticketService.getAllTickets();
+        List<Ticket> ticketList = ticketService.findAll();
         return ResponseEntity.ok(ticketList);
     }
 

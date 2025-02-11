@@ -32,7 +32,7 @@ public class MovieService {
         return movieRepository.findById(id).orElseThrow(() -> new NotFoundMovieException(id));
     }
 
-    public List<Movie> getAllMovies() {
+    public List<Movie> findAll() {
         return movieRepository.findAll();
     }
 }

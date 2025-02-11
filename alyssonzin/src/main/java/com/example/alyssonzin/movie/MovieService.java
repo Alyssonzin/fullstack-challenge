@@ -29,7 +29,7 @@ public class MovieService {
     }
 
     public Movie findById(Long id) {
-        return movieRepository.findById(id).orElseThrow(() -> new NotFoundMovieException("Movie not found"));
+        return movieRepository.findById(id).orElseThrow(() -> new NotFoundMovieException(id));
     }
 
     public List<Movie> getAllMovies() {

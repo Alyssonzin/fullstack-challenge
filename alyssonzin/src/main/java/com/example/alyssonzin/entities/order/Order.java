@@ -1,7 +1,7 @@
 package com.example.alyssonzin.entities.order;
 
-import com.example.alyssonzin.OrderStatus;
 import com.example.alyssonzin.entities.user.User;
+import com.example.alyssonzin.utils.OrderStatus;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

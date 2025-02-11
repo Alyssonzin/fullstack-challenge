@@ -1,4 +1,4 @@
-package com.example.alyssonzin;
+package com.example.alyssonzin.utils;
 
 public enum OrderStatus {
     PENDING, CONFIRMED, CANCELED;

@@ -10,8 +10,12 @@ import java.util.List;
 @RequestMapping("/movie")
 public class MovieController {
 
+    private final MovieService movieService;
+
     @Autowired
-    MovieService movieService;
+    public MovieController(MovieService movieService) {
+        this.movieService = movieService;
+    }
 
     @PostMapping
     public ResponseEntity<Movie> createMovie(@RequestBody MovieDto movieBody) {

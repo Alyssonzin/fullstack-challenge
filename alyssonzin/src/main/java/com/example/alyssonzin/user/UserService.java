@@ -11,10 +11,9 @@ import com.example.alyssonzin.utils.PasswordUtils;
 
 @Service
 public class UserService {
+    private final UserRepository repository;
 
     @Autowired
-    private UserRepository repository;
-
     public UserService(UserRepository repository) {
         this.repository = repository;
     }

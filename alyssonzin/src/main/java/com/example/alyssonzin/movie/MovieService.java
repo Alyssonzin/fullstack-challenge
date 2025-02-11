@@ -9,10 +9,9 @@ import com.example.alyssonzin.infra.exceptions.NotFoundMovieException;
 
 @Service
 public class MovieService {
-
-    @Autowired
     private final MovieRepository movieRepository;
 
+    @Autowired
     public MovieService(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
     }

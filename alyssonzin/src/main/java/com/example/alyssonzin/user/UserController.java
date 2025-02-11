@@ -16,9 +16,12 @@ import com.example.alyssonzin.user.dto.UserResponseDto;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+    private final UserService userService;
 
     @Autowired
-    private UserService userService;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @PostMapping
     public ResponseEntity<UserResponseDto> createUser(@RequestBody UserRequestDto userBody) {

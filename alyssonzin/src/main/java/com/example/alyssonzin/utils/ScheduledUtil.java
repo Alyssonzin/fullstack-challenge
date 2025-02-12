@@ -7,9 +7,13 @@ import java.util.concurrent.TimeUnit;
 public class ScheduledUtil {
     private final ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
 
-    // Agenda qualquer função para ser executada após um determinado tempo em
-    // segundos
-    public void scheduleFunction(Runnable function, int delayInSeconds) {
-        executor.schedule(function, delayInSeconds, TimeUnit.SECONDS);
+    // Agenda qualquer função para ser executada após um determinado tempo
+    public void scheduleFunction(Runnable function, int delay, TimeUnit timeUnit) {
+        executor.schedule(function, delay, timeUnit);
+    }
+
+    // Para o executor
+    public void terminateExecutor() {
+        executor.shutdown();
     }
 }

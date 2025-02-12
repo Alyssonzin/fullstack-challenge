@@ -1,6 +1,7 @@
 package com.example.alyssonzin.entities.ticket;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -39,10 +40,12 @@ public class TicketController {
 
         ticketService.create(newTicket);
 
-        ScheduledUtil schedule = new ScheduledUtil();
-        schedule.scheduleFunction(()->{
+        // Aguarda 10 segundos para trocar o estado do assento
+        ScheduledUtil scheduler = new ScheduledUtil();
+        scheduler.scheduleFunction(() -> {
             seatService.toggleIsOccupied(ticketBody.seatId());
-        }, 10);
+            scheduler.terminateExecutor();
+        }, 10, TimeUnit.SECONDS);
 
         return ResponseEntity.ok(newTicket);
     }

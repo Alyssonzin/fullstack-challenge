@@ -4,8 +4,4 @@ export default interface UserForm {
     email: string;
     password: string;
     confirmPassword: string;
-    phone: {
-        ddd: string;
-        number: string;
-    }
 }

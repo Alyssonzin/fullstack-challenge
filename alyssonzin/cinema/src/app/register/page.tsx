@@ -3,7 +3,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import Input from "../../components/formComponents/Input";
 import Button from "../../components/formComponents/Button";
 import InputErrorMessage from "../../components/formComponents/InputErrorMessage";
-import { cpfMask, dddPhoneMask, phoneNumberMask } from "../../lib/Masks";
+import { cpfMask } from "../../lib/Masks";
 import UserForm from "../../types/forms/UserForm";
 import { createUser } from "../../api/userRoutes";
 
@@ -42,34 +42,6 @@ export default function Register() {
                                     onChange={(e) => { e.target.value = cpfMask(e.target.value) }}
                                 />
                                 {formState.errors.cpf && <InputErrorMessage text="CPF é obrigatório" />}
-                            </div>
-
-                            <div className="flex space-x-3">
-                                <div className="w-20">
-                                    <Input
-                                        type="text"
-                                        autoComplete="off"
-                                        placeholder="DDD"
-                                        label="DDD"
-                                        {...register('phone.ddd', { required: true })}
-                                        isError={!!formState.errors.phone?.ddd}
-                                        onChange={(e) => { e.target.value = dddPhoneMask(e.target.value) }}
-                                    />
-                                    {formState.errors.phone?.ddd && <InputErrorMessage text="DDD é obrigatório" />}
-                                </div>
-
-                                <div className="w-full">
-                                    <Input
-                                        type="text"
-                                        autoComplete="off"
-                                        placeholder="Número de telefone"
-                                        label="Telefone"
-                                        {...register('phone.number', { required: true })}
-                                        isError={!!formState.errors.phone?.number}
-                                        onChange={(e) => { e.target.value = phoneNumberMask(e.target.value) }}
-                                    />
-                                    {formState.errors.phone?.number && <InputErrorMessage text="Telefone é obrigatório" />}
-                                </div>
                             </div>
 
                             <div className="w-full">

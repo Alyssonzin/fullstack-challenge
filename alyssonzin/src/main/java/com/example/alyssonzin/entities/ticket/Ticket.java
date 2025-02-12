@@ -1,6 +1,7 @@
 package com.example.alyssonzin.entities.ticket;
 
 import com.example.alyssonzin.entities.movie.Movie;
+import com.example.alyssonzin.entities.seat.Seat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -26,6 +28,10 @@ public class Ticket {
     @ManyToOne
     @JoinColumn(name = "movie_id", referencedColumnName = "id")
     private Movie movie;
+
+    @OneToOne
+    @JoinColumn(name = "seat_id", referencedColumnName = "id")
+    private Seat seat;
 
     public Ticket() {
 

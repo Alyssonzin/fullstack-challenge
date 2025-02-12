@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.alyssonzin.entities.movie.Movie;
 import com.example.alyssonzin.entities.movie.MovieService;
+import com.example.alyssonzin.entities.seat.SeatService;
+import com.example.alyssonzin.utils.ScheduledUtil;
 
 @RestController
 @RequestMapping("/ticket")
@@ -20,11 +22,13 @@ public class TicketController {
 
     private final TicketService ticketService;
     private final MovieService movieService;
+    private final SeatService seatService;
 
     @Autowired
-    public TicketController(TicketService ticketService, MovieService movieService) {
+    public TicketController(TicketService ticketService, MovieService movieService, SeatService seatService) {
         this.ticketService = ticketService;
         this.movieService = movieService;
+        this.seatService = seatService;
     }
 
     @PostMapping
@@ -34,6 +38,12 @@ public class TicketController {
         newTicket.setMovie(movie);
 
         ticketService.create(newTicket);
+
+        ScheduledUtil schedule = new ScheduledUtil();
+        schedule.scheduleFunction(()->{
+            seatService.toggleIsOccupied(ticketBody.seatId());
+        }, 10);
+
         return ResponseEntity.ok(newTicket);
     }
 

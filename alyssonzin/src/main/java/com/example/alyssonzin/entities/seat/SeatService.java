@@ -36,6 +36,7 @@ public class SeatService {
     public Seat toggleIsOccupied(Long id) {
         Seat seatToUpdate = findById(id);
         seatToUpdate.setIsOccupied(!seatToUpdate.getIsOccupied()); // Inverte o estado do assento
+        System.out.println("ASSENTO INVERTIDO: " + seatToUpdate.getIsOccupied());
         return save(seatToUpdate);
     }
 }

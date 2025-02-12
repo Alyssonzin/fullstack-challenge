@@ -80,10 +80,10 @@ export default function Register() {
                             </div >
 
                             <Button type="submit">Cadastrar</Button>
-                        </div >
-                    </form >
-                </div >
-            </div >
-        </main >
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
     )
 }

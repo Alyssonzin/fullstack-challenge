@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.alyssonzin.infra.exceptions.DuplicateCpfException;
+import com.example.alyssonzin.infra.exceptions.DuplicateEmailException;
 import com.example.alyssonzin.infra.exceptions.NotFoundUserException;
 import com.example.alyssonzin.utils.PasswordUtils;
 
@@ -30,6 +31,8 @@ public class UserService {
         // Verifica primeiro se o CPF ja existe
         if (repository.existsByCpf(user.getCpf())) {
             throw new DuplicateCpfException("This CPF already exists");
+        } else if (repository.existsByEmail(user.getEmail())) {
+            throw new DuplicateEmailException("This email already exists");
         }
 
         user.setPassword(PasswordUtils.encriptPassword(user.getPassword()));

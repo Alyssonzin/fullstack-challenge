@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.example.alyssonzin.infra.exceptions.DuplicateCpfException;
+import com.example.alyssonzin.infra.exceptions.DuplicateEmailException;
 import com.example.alyssonzin.infra.exceptions.NotFoundMovieException;
 import com.example.alyssonzin.infra.exceptions.NotFoundOrderException;
 import com.example.alyssonzin.infra.exceptions.NotFoundSeatException;
@@ -51,6 +52,14 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(NotFoundUserException.class)
     private ResponseEntity<RestErrorResponse> notFoundUserHandler(NotFoundUserException exception) {
         RestErrorResponse responseError = new RestErrorResponse(HttpStatus.NOT_FOUND, exception.getMessage());
+
+        return ResponseEntity.status(responseError.getStatus()).body(responseError);
+    }
+
+    // Email ja existe
+    @ExceptionHandler(DuplicateEmailException.class)
+    private ResponseEntity<RestErrorResponse> duplicateEmailHandler(DuplicateEmailException exception) {
+        RestErrorResponse responseError = new RestErrorResponse(HttpStatus.CONFLICT, exception.getMessage());
 
         return ResponseEntity.status(responseError.getStatus()).body(responseError);
     }

@@ -28,14 +28,18 @@ public class UserService {
     }
 
     public User createUser(User user) {
-        // Verifica primeiro se o CPF ja existe
-        if (repository.existsByCpf(user.getCpf())) {
-            throw new DuplicateCpfException("This CPF already exists");
-        } else if (repository.existsByEmail(user.getEmail())) {
-            throw new DuplicateEmailException("This email already exists");
-        }
-
+        validateUser(user);
         user.setPassword(PasswordUtils.encriptPassword(user.getPassword()));
         return repository.save(user);
+    }
+
+    // Centraliza o tratamento de todas as exceções de usuario
+    private void validateUser(User user) {
+        if (repository.existsByCpf(user.getCpf())) {
+            throw new DuplicateCpfException("This CPF already exists");
+        }
+        if (repository.existsByEmail(user.getEmail())) {
+            throw new DuplicateEmailException("This email already exists");
+        }
     }
 }

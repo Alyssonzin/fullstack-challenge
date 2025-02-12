@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.alyssonzin.infra.exceptions.NotFoundMovieException;
+import com.example.alyssonzin.infra.exceptions.NotFoundExceptions;
 
 @Service
 public class MovieService {
@@ -29,7 +29,7 @@ public class MovieService {
     }
 
     public Movie findById(Long id) {
-        return movieRepository.findById(id).orElseThrow(() -> new NotFoundMovieException(id));
+        return movieRepository.findById(id).orElseThrow(() -> new NotFoundExceptions.MovieNotFound(id));
     }
 
     public List<Movie> findAll() {

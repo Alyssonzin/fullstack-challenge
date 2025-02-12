@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.alyssonzin.infra.exceptions.NotFoundSeatException;
+import com.example.alyssonzin.infra.exceptions.NotFoundExceptions;
 
 @Service
 public class SeatService {
@@ -25,7 +25,7 @@ public class SeatService {
     }
 
     public Seat findById(Long id) {
-        return seatRepository.findById(id).orElseThrow(() -> new NotFoundSeatException(id));
+        return seatRepository.findById(id).orElseThrow(() -> new NotFoundExceptions.SeatNotFound(id));
     }
 
     public void deleteById(Long id) {

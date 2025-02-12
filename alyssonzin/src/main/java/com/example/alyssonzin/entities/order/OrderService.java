@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.alyssonzin.infra.exceptions.NotFoundOrderException;
+import com.example.alyssonzin.infra.exceptions.NotFoundExceptions;
 
 @Service
 public class OrderService {
@@ -29,7 +29,7 @@ public class OrderService {
     }
 
     public Order findById(Long id) {
-        return orderRepository.findById(id).orElseThrow(() -> new NotFoundOrderException(id));
+        return orderRepository.findById(id).orElseThrow(() -> new NotFoundExceptions.OrderNotFound(id));
     }
 
     public List<Order> findAll() {

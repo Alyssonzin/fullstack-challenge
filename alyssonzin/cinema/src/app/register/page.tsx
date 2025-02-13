@@ -4,15 +4,22 @@ import Input from "../../components/formComponents/Input";
 import Button from "../../components/formComponents/Button";
 import InputErrorMessage from "../../components/formComponents/InputErrorMessage";
 import { cpfMask } from "../../lib/Masks";
-import UserForm from "../../types/forms/UserForm";
+import { User } from "../../types/schemas/UserSchema";
 import { createUser } from "../../api/userRoutes";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { UserSchema } from "../../types/schemas/UserSchema";
 
-const onSubmit: SubmitHandler<UserForm> = (data) => {
+const onSubmit: SubmitHandler<User> = (data) => {
     createUser(data);
 }
 
 export default function Register() {
-    const { register, handleSubmit, formState } = useForm<UserForm>();
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<User>({ resolver: zodResolver(UserSchema) });
+
     return (
         <main className="min-h-screen">
             <div className="flex flex-col items-center justify-center text-white">
@@ -25,10 +32,10 @@ export default function Register() {
                                     autoComplete="off"
                                     placeholder="Nome completo"
                                     label="Nome"
-                                    {...register('name', { required: true })}
-                                    isError={!!formState.errors.name}
+                                    {...register('name')}
+                                    isError={!!errors.name}
                                 />
-                                {formState.errors.name && <InputErrorMessage text="Nome é obrigatório" />}
+                                {errors.name && <InputErrorMessage text={errors.name.message} />}
                             </div>
 
                             <div className="w-full">
@@ -37,23 +44,23 @@ export default function Register() {
                                     autoComplete="off"
                                     placeholder="Seu CPF"
                                     label="CPF"
-                                    {...register('cpf', { required: true })}
-                                    isError={!!formState.errors.cpf}
+                                    {...register('cpf')}
+                                    isError={!!errors.cpf}
                                     onChange={(e) => { e.target.value = cpfMask(e.target.value) }}
                                 />
-                                {formState.errors.cpf && <InputErrorMessage text="CPF é obrigatório" />}
+                                {errors.cpf && <InputErrorMessage text={errors.cpf.message} />}
                             </div>
 
                             <div className="w-full">
                                 <Input
-                                    type="email"
+                                    type="text"
                                     autoComplete="off"
                                     placeholder="Seu e-mail"
                                     label="E-mail"
-                                    {...register('email', { required: true })}
-                                    isError={!!formState.errors.email}
+                                    {...register('email')}
+                                    isError={!!errors.email}
                                 />
-                                {formState.errors.email && <InputErrorMessage text="E-mail é obrigatório" />}
+                                {errors.email && <InputErrorMessage text={errors.email.message} />}
                             </div>
 
                             <div className="w-full">
@@ -62,10 +69,10 @@ export default function Register() {
                                     autoComplete="off"
                                     placeholder="Crie uma senha"
                                     label="Senha"
-                                    {...register('password', { required: true })}
-                                    isError={!!formState.errors.password}
+                                    {...register('password')}
+                                    isError={!!errors.password}
                                 />
-                                {formState.errors.password && <InputErrorMessage text="Senha é obrigatório" />}
+                                {errors.password && <InputErrorMessage text={errors.password.message} />}
                             </div>
 
                             <div className="w-full">
@@ -73,10 +80,10 @@ export default function Register() {
                                     type="password"
                                     autoComplete="off"
                                     placeholder="Digite a senha novamente"
-                                    {...register('confirmPassword', { required: true })}
-                                    isError={!!formState.errors.confirmPassword}
+                                    {...register('confirmPassword')}
+                                    isError={!!errors.confirmPassword}
                                 />
-                                {formState.errors.confirmPassword && <InputErrorMessage text="Nome é obrigatório" />}
+                                {errors.confirmPassword && <InputErrorMessage text={errors.confirmPassword.message} />}
                             </div >
 
                             <Button type="submit">Cadastrar</Button>

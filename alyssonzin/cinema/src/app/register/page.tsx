@@ -1,4 +1,4 @@
-import UserForm from "../../components/forms/UserForm";
+import UserForm from "../../components/forms/RegisterForm";
 
 export default function Register() {
     return (

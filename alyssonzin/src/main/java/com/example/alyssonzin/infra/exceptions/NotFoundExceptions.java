@@ -33,5 +33,9 @@ public abstract class NotFoundExceptions extends RuntimeException {
         public UserNotFound(Long id) {
             super("User not found with id: " + id);
         }
+
+        public UserNotFound(String email) {
+            super("User not found with email: " + email);
+        }
     }
 }

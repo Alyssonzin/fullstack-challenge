@@ -8,6 +8,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import com.example.alyssonzin.infra.exceptions.ConflictExceptions;
 import com.example.alyssonzin.infra.exceptions.NotFoundExceptions;
+import com.example.alyssonzin.infra.exceptions.UnauthorizedExceptions;
 
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
@@ -37,5 +38,13 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     })
     private ResponseEntity<RestErrorResponse> handleNotFound(RuntimeException exception) {
         return buildErrorResponse(HttpStatus.NOT_FOUND, exception.getMessage());
+    }
+
+    // Exceções de UNAUTHORIZED
+    @ExceptionHandler({
+            UnauthorizedExceptions.InvalidPassword.class,
+    })
+    private ResponseEntity<RestErrorResponse> handleUnauthorized(RuntimeException exception) {
+        return buildErrorResponse(HttpStatus.UNAUTHORIZED, exception.getMessage());
     }
 }

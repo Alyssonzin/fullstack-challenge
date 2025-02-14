@@ -41,4 +41,12 @@ public class UserController {
 
         return ResponseEntity.ok(response);
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<UserResponseDto> login(@RequestBody UserRequestDto userBody) {
+        User user = userService.findByEmail(userBody.email());
+        userService.validatePassword(userBody.password(), user.getPassword());
+
+        return ResponseEntity.ok(new UserResponseDto(user.getName(), user.getEmail(), null));
+    }
 }

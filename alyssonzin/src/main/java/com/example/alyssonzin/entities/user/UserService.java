@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.alyssonzin.infra.exceptions.ConflictExceptions;
 import com.example.alyssonzin.infra.exceptions.NotFoundExceptions;
+import com.example.alyssonzin.infra.exceptions.UnauthorizedExceptions;
 import com.example.alyssonzin.utils.PasswordUtils;
 
 @Service
@@ -30,6 +31,17 @@ public class UserService {
         validateUser(user);
         user.setPassword(PasswordUtils.encriptPassword(user.getPassword()));
         return repository.save(user);
+    }
+
+    public User findByEmail(String email) {
+        return repository.findByEmail(email).orElseThrow(() -> new NotFoundExceptions.UserNotFound(email));
+    }
+
+    public boolean validatePassword(String password, String encodedPassword) {
+        if (!PasswordUtils.validatePassword(password, encodedPassword)) {
+            throw new UnauthorizedExceptions.InvalidPassword();
+        }
+        return true;
     }
 
     // Centraliza o tratamento de todas as exceções de usuario

@@ -9,5 +9,8 @@ public class PasswordUtils {
     public static String encriptPassword(String password) {
         return encoder.encode(password);
     }
-    
+
+    public static boolean validatePassword(String password, String encodedPassword) {
+        return encoder.matches(password, encodedPassword);
+    }
 }

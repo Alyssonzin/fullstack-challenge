@@ -2,22 +2,22 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { createUser } from "../../api/userRoutes";
 import { cpfMask } from "../../lib/Masks"
-import { User, UserSchema } from "../../types/schemas/UserSchema";
+import { UserRegister, RegisterSchema } from "../../types/schemas/user/RegisterSchema";
 import Input from "../formComponents/Input"
 import InputErrorMessage from "../formComponents/InputErrorMessage"
 import { zodResolver } from "@hookform/resolvers/zod";
 import Button from "../formComponents/Button";
 
-const onSubmit: SubmitHandler<User> = (data) => {
+const onSubmit: SubmitHandler<UserRegister> = (data) => {
     createUser(data);
 }
 
-export default function UserForm() {
+export default function RegisterForm() {
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<User>({ resolver: zodResolver(UserSchema) });
+    } = useForm<UserRegister>({ resolver: zodResolver(RegisterSchema) });
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>

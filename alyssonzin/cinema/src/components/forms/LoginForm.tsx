@@ -1,20 +1,26 @@
 "use client";
 
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import Input from "../formComponents/Input";
 import InputErrorMessage from "../formComponents/InputErrorMessage";
-import { User, UserSchema } from "../../types/schemas/UserSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Button from "../formComponents/Button";
+import { LoginSchema, UserLogin } from "../../types/schemas/user/LoginSchema";
+import { loginUser } from "../../api/userRoutes";
+
+const onSubmit: SubmitHandler<UserLogin> = (data) => {
+    loginUser(data);
+}
 
 export default function LoginForm() {
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<User>({ resolver: zodResolver(UserSchema) });
+    } = useForm<UserLogin>({ resolver: zodResolver(LoginSchema) });
+
     return (
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex space-y-5 flex-col">
                 <div className="w-full">
                     <Input

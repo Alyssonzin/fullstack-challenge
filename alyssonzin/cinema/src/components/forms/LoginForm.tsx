@@ -2,17 +2,24 @@
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import Input from "../formComponents/Input";
-import InputErrorMessage from "../formComponents/InputErrorMessage";
+import ErrorMessage from "../formComponents/ErrorMessage";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Button from "../formComponents/Button";
 import { LoginSchema, UserLogin } from "../../types/schemas/user/LoginSchema";
 import { loginUser } from "../../api/userRoutes";
-
-const onSubmit: SubmitHandler<UserLogin> = (data) => {
-    loginUser(data);
-}
+import { useState } from "react";
 
 export default function LoginForm() {
+    const [error, setError] = useState<string | null>(null);
+
+    const onSubmit: SubmitHandler<UserLogin> = async (data) => {
+        try {
+            await loginUser(data);
+        } catch (error) {
+            setError(error.message);
+        }
+    }
+
     const {
         register,
         handleSubmit,
@@ -22,6 +29,8 @@ export default function LoginForm() {
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex space-y-5 flex-col">
+                {error && <ErrorMessage text={error} />}
+
                 <div className="w-full">
                     <Input
                         type="text"
@@ -31,7 +40,7 @@ export default function LoginForm() {
                         {...register('email')}
                         isError={!!errors.email}
                     />
-                    {errors.email && <InputErrorMessage text={errors.email.message} />}
+                    {errors.email && <ErrorMessage text={errors.email.message} />}
                 </div>
 
                 <div className="w-full">
@@ -43,7 +52,7 @@ export default function LoginForm() {
                         {...register('password')}
                         isError={!!errors.password}
                     />
-                    {errors.password && <InputErrorMessage text={errors.password.message} />}
+                    {errors.password && <ErrorMessage text={errors.password.message} />}
                 </div>
 
                 <Button type="submit">Entrar</Button>

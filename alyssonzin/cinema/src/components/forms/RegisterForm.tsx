@@ -4,7 +4,7 @@ import { createUser } from "../../api/userRoutes";
 import { cpfMask } from "../../lib/Masks"
 import { UserRegister, RegisterSchema } from "../../types/schemas/user/RegisterSchema";
 import Input from "../formComponents/Input"
-import InputErrorMessage from "../formComponents/InputErrorMessage"
+import ErrorMessage from "../formComponents/ErrorMessage"
 import { zodResolver } from "@hookform/resolvers/zod";
 import Button from "../formComponents/Button";
 
@@ -31,7 +31,7 @@ export default function RegisterForm() {
                         {...register('name')}
                         isError={!!errors.name}
                     />
-                    {errors.name && <InputErrorMessage text={errors.name.message} />}
+                    {errors.name && <ErrorMessage text={errors.name.message} />}
                 </div>
 
                 <div className="w-full">
@@ -44,7 +44,7 @@ export default function RegisterForm() {
                         isError={!!errors.cpf}
                         onChange={(e) => { e.target.value = cpfMask(e.target.value) }}
                     />
-                    {errors.cpf && <InputErrorMessage text={errors.cpf.message} />}
+                    {errors.cpf && <ErrorMessage text={errors.cpf.message} />}
                 </div>
 
                 <div className="w-full">
@@ -56,7 +56,7 @@ export default function RegisterForm() {
                         {...register('email')}
                         isError={!!errors.email}
                     />
-                    {errors.email && <InputErrorMessage text={errors.email.message} />}
+                    {errors.email && <ErrorMessage text={errors.email.message} />}
                 </div>
 
                 <div className="w-full">
@@ -68,7 +68,7 @@ export default function RegisterForm() {
                         {...register('password')}
                         isError={!!errors.password}
                     />
-                    {errors.password && <InputErrorMessage text={errors.password.message} />}
+                    {errors.password && <ErrorMessage text={errors.password.message} />}
                 </div>
 
                 <div className="w-full">
@@ -79,7 +79,7 @@ export default function RegisterForm() {
                         {...register('confirmPassword')}
                         isError={!!errors.confirmPassword}
                     />
-                    {errors.confirmPassword && <InputErrorMessage text={errors.confirmPassword.message} />}
+                    {errors.confirmPassword && <ErrorMessage text={errors.confirmPassword.message} />}
                 </div >
 
                 <Button type="submit">Cadastrar</Button>

@@ -46,9 +46,7 @@ export default function LoginForm() {
                     {errors.password && <InputErrorMessage text={errors.password.message} />}
                 </div>
 
-                <div className="w-full">
-                    <Button type="submit">Entrar</Button>
-                </div>
+                <Button type="submit">Entrar</Button>
             </div>
         </form>
     )

@@ -16,7 +16,7 @@ export default function Header() {
       <nav className="m-1">
         <ul className="flex items-center space-x-4">
           <li>
-            <Link href="/register">
+            <Link href="/login">
               <div className="hover:bg-sky-600 transition rounded p-2">
                 <p>Entre ou <br /> Cadastre-se</p>
               </div>

@@ -1,9 +1,9 @@
 package com.example.alyssonzin.entities.session;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.alyssonzin.entities.movie.Movie;
-
 public interface SessionRepository extends JpaRepository<Session, Long> {
-    Movie findByMovieId(Long movieId);
+    List<Session> findByMovieId(Long movieId);
 }

@@ -1,5 +1,7 @@
 package com.example.alyssonzin.entities.session;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,5 +22,9 @@ public class SessionService {
 
     public Session getSessionById(Long id) {
         return sessionRepository.findById(id).orElseThrow(() -> new NotFoundExceptions.SessionNotFound(id));
+    }
+
+    public List<Session> getSessionsByMovie(Long movieId) {
+        return sessionRepository.findByMovieId(movieId);
     }
 }

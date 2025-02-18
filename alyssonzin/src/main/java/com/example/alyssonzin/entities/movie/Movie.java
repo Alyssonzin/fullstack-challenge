@@ -7,7 +7,6 @@ import jakarta.persistence.*;
 public class Movie {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "name", nullable = false)
@@ -16,17 +15,14 @@ public class Movie {
     @Column(name = "runtime", nullable = false)
     private Integer runtime;
 
-    @Column(name = "tmdb_id", unique = true)
-    private Integer tmdbId;
-
     public Movie() {
 
     }
 
     public Movie(MovieDto data) {
+        this.id = data.id();
         this.name = data.name();
         this.runtime = data.runtime();
-        this.tmdbId = data.tmdbId();
     }
 
     public Long getId() {
@@ -47,13 +43,5 @@ public class Movie {
 
     public Integer getRuntime() {
         return runtime;
-    }
-
-    public void setTmdbId(Integer tmdbId) {
-        this.tmdbId = tmdbId;
-    }
-
-    public Integer getTmdbId() {
-        return tmdbId;
     }
 }

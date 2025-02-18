@@ -35,6 +35,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
             NotFoundExceptions.OrderNotFound.class,
             NotFoundExceptions.SeatNotFound.class,
             NotFoundExceptions.UserNotFound.class,
+            NotFoundExceptions.SessionNotFound.class,
     })
     private ResponseEntity<RestErrorResponse> handleNotFound(RuntimeException exception) {
         return buildErrorResponse(HttpStatus.NOT_FOUND, exception.getMessage());

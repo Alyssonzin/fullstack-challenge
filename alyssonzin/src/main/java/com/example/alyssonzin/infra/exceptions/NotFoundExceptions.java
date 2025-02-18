@@ -38,4 +38,11 @@ public abstract class NotFoundExceptions extends RuntimeException {
             super("User not found with email: " + email);
         }
     }
+
+    // Sessão não encontrada
+    public static class SessionNotFound extends NotFoundExceptions {
+        public SessionNotFound(Long id) {
+            super("Session not found with id: " + id);
+        }
+    }
 }

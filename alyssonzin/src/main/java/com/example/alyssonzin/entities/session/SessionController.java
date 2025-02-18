@@ -9,18 +9,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.alyssonzin.entities.movie.MovieService;
-
 @RestController
 @RequestMapping("/session")
 public class SessionController {
     private final SessionService sessionService;
-    private final MovieService movieService;
 
     @Autowired
-    public SessionController(SessionService sessionService, MovieService movieService) {
+    public SessionController(SessionService sessionService) {
         this.sessionService = sessionService;
-        this.movieService = movieService;
     }
 
     @GetMapping("/{movieId}")

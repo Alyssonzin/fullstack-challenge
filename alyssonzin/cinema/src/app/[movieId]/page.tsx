@@ -4,6 +4,7 @@ import IndicativeRating from "../../components/MoviePage/IndicativeRating";
 import MoviePoster from "../../components/MoviePoster";
 import ProductionCompanies from "../../components/MoviePage/ProductionCompanies";
 import Link from "next/link";
+import { getSessionsByMovie } from "../../api/sessionRoutes";
 
 interface Props {
     params: Promise<{ movieId: string }>,
@@ -17,10 +18,15 @@ function fetchIndicativeRating(movieId: string) {
     return getIndicativeRating(movieId);
 }
 
+function fetchSessions(movieId: string) {
+    return getSessionsByMovie(movieId);
+}
+
 export default async function MoviePage({ params }: Props) {
     const { movieId } = await params;
     const movie = await fetchMovie(movieId);
     const indicativeRating = await fetchIndicativeRating(movieId);
+    const sessions = await fetchSessions(movieId);
 
     return (
         <main className="min-h-screen text-white">
@@ -59,23 +65,25 @@ export default async function MoviePage({ params }: Props) {
                 </div>
 
                 <div className="flex space-x-3 bg-slate-950 rounded p-2">
-                    <article>
-                        <Link
-                            href={`/sessions/${movieId}`}
-                        >
-                            <div className="text-center hover:bg-cyan-900 transition rounded p-5">
-                                <p>Hoje</p>
-                                <p>
-                                    {
-                                        new Date().toLocaleDateString('br', {
-                                            day: 'numeric',
-                                            month: 'numeric',
-                                        })
-                                    }
-                                </p>
-                            </div>
-                        </Link>
-                    </article>
+                    {sessions.map(({ id, date }) => (
+                        <article key={id}>
+                            <Link
+                                href={`/sessions/${movieId}`}
+                            >
+                                <div className="text-center hover:bg-cyan-900 transition rounded p-5">
+                                    <p>{date}</p>
+                                    <p>
+                                        {
+                                            new Date().toLocaleDateString('br', {
+                                                day: 'numeric',
+                                                month: 'numeric',
+                                            })
+                                        }
+                                    </p>
+                                </div>
+                            </Link>
+                        </article>
+                    ))}
                 </div>
             </section>
         </main>

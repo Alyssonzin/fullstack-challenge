@@ -1,10 +1,10 @@
-import { getIndicativeRating, getMovieDetails } from "../../api/movieRoutes";
-import Genres from "../../components/MoviePage/Genres";
-import IndicativeRating from "../../components/MoviePage/IndicativeRating";
-import MoviePoster from "../../components/MoviePoster";
-import ProductionCompanies from "../../components/MoviePage/ProductionCompanies";
+import { getIndicativeRating, getMovieDetails } from "../../../api/movieRoutes";
+import Genres from "../../../components/MoviePage/Genres";
+import IndicativeRating from "../../../components/MoviePage/IndicativeRating";
+import MoviePoster from "../../../components/MoviePoster";
+import ProductionCompanies from "../../../components/MoviePage/ProductionCompanies";
 import Link from "next/link";
-import { getSessionsByMovie } from "../../api/sessionRoutes";
+import { getSessionsByMovie } from "../../../api/sessionRoutes";
 
 interface Props {
     params: Promise<{ movieId: string }>,
@@ -27,6 +27,8 @@ export default async function MoviePage({ params }: Props) {
     const movie = await fetchMovie(movieId);
     const indicativeRating = await fetchIndicativeRating(movieId);
     const sessions = await fetchSessions(movieId);
+    console.log(sessions);
+    
 
     return (
         <main className="min-h-screen text-white">
@@ -69,7 +71,7 @@ export default async function MoviePage({ params }: Props) {
                         sessions? sessions.map(({ id, date, time }) => (
                             <article key={id}>
                                 <Link
-                                    href={`/sessions/${movieId}`}
+                                    href={`/sessions/${id}`}
                                 >
                                     <div className="text-center hover:bg-cyan-900 transition rounded p-5">
                                         <p>{date}</p>

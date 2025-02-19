@@ -26,10 +26,22 @@ public class SessionController {
         this.movieService = movieService;
     }
 
-    @GetMapping("/{movieId}")
+    @GetMapping
+    public ResponseEntity<List<Session>> getAllSessions() {
+        List<Session> sessionList = sessionService.findAll();
+        return ResponseEntity.ok(sessionList);
+    }
+
+    @GetMapping("/movie/{movieId}")
     public ResponseEntity<List<Session>> getSessionsByMovie(@PathVariable Long movieId) {
         List<Session> sessionList = sessionService.getSessionsByMovie(movieId);
         return ResponseEntity.ok(sessionList);
+    }
+
+    @GetMapping("/{sessionId}")
+    public ResponseEntity<Session> getSessionById(@PathVariable Long sessionId) {
+        Session session = sessionService.getSessionById(sessionId);
+        return ResponseEntity.ok(session);
     }
 
     @PostMapping

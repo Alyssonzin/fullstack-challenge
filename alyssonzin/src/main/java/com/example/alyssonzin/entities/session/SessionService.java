@@ -27,4 +27,8 @@ public class SessionService {
     public List<Session> getSessionsByMovie(Long movieId) {
         return sessionRepository.findByMovieId(movieId);
     }
+
+    public List<Session> findAll() {
+        return sessionRepository.findAll();
+    }
 }

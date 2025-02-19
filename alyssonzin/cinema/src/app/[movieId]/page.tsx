@@ -65,17 +65,20 @@ export default async function MoviePage({ params }: Props) {
                 </div>
 
                 <div className="flex space-x-3 bg-slate-950 rounded p-2">
-                    {sessions?.map(({ id, date }) => (
-                        <article key={id}>
-                            <Link
-                                href={`/sessions/${movieId}`}
-                            >
-                                <div className="text-center hover:bg-cyan-900 transition rounded p-5">
-                                    <p>{date}</p>
-                                </div>
-                            </Link>
-                        </article>
-                    ))}
+                    {
+                        sessions? sessions.map(({ id, date, time }) => (
+                            <article key={id}>
+                                <Link
+                                    href={`/sessions/${movieId}`}
+                                >
+                                    <div className="text-center hover:bg-cyan-900 transition rounded p-5">
+                                        <p>{date}</p>
+                                        <p>{time}</p>
+                                    </div>
+                                </Link>
+                            </article>
+                        )) : <p>Não há sessões disponíveis</p>
+                    }
                 </div>
             </section>
         </main>

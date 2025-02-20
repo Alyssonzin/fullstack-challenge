@@ -1,10 +1,14 @@
 package com.example.alyssonzin.entities.seat;
 
+import com.example.alyssonzin.entities.session.Session;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,8 +25,16 @@ public class Seat {
     @Column(name = "is_occupied", nullable = false)
     boolean isOccupied = false;
 
+    @ManyToOne
+    @JoinColumn(name = "session_id", nullable = false)
+    private Session session;
+
     public Seat() {
 
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public Integer getNumber() {
@@ -39,5 +51,13 @@ public class Seat {
 
     public void setIsOccupied(boolean isOccupied) {
         this.isOccupied = isOccupied;
+    }
+
+    public Session getSession() {
+        return session;
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
     }
 }

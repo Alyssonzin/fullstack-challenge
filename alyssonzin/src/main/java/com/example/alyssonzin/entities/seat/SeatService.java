@@ -32,6 +32,10 @@ public class SeatService {
         seatRepository.deleteById(id);
     }
 
+    public List<Seat> findBySessionId(Long sessionId) {
+        return seatRepository.findBySessionId(sessionId);
+    }
+
     // Ocupa/desocupa o assento
     public Seat toggleIsOccupied(Long id) {
         Seat seatToUpdate = findById(id);

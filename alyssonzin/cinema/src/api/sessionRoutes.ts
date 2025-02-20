@@ -15,7 +15,7 @@ export const getSessionsByMovie = async (movieId: string) => {
 
 export const getSeatsBySession = async (sessionId: string) => {
     try {
-        const response = await apiSpringBoot.get<Seat[]>(`/session/${sessionId}/seats`);
+        const response = await apiSpringBoot.get<Seat[]>(`/seat/session/${sessionId}`);
         return response.data;
     } catch (error) {
         console.log(error);

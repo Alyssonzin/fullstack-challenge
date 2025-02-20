@@ -27,8 +27,6 @@ export default async function MoviePage({ params }: Props) {
     const movie = await fetchMovie(movieId);
     const indicativeRating = await fetchIndicativeRating(movieId);
     const sessions = await fetchSessions(movieId);
-    console.log(sessions);
-    
 
     return (
         <main className="min-h-screen text-white">

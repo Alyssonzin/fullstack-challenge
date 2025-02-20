@@ -1,4 +1,4 @@
-import { Session } from "../types/Session";
+import Session, { Seat } from "../types/Session";
 import { apiSpringBoot } from "./api";
 
 export const getSessionsByMovie = async (movieId: string) => {
@@ -7,6 +7,15 @@ export const getSessionsByMovie = async (movieId: string) => {
         if (response.data.length === 0) {
             return null;
         }
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const getSeatsBySession = async (sessionId: string) => {
+    try {
+        const response = await apiSpringBoot.get<Seat[]>(`/session/${sessionId}/seats`);
         return response.data;
     } catch (error) {
         console.log(error);

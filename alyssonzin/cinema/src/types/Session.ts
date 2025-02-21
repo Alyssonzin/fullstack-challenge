@@ -1,4 +1,4 @@
-export default interface Session {
+export interface Session {
     id: number,
     date: string,
     time: string,
@@ -6,7 +6,9 @@ export default interface Session {
 }
 
 export interface Seat {
-    id: string,
-    number: number,
-    isOccupied: boolean,
+    id?: string,
+    number?: number,
+    isOccupied?: boolean,
+    preSelected?: boolean,
+    active?: boolean,
 }
